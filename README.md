@@ -1,13 +1,20 @@
 # ogbeide_osarieme_DnD
 
 Overview
-This update addresses a bug where puzzle pieces were stacking on top of each other. The fix ensures that puzzle pieces are now displayed side by side, eliminating any overlapping issues.
+I fixed two bugs , the first was the puzzle stacking and the second was the reset functionality. Previously, puzzle pieces were stacking on top of each other, hindering user interaction. i made adjustments to the positioning and rendering logic,  to ensure that the puzzl pieces are displayed side by side, resolving stacking issues. For the reset button, functionality has been restored, now users can reset individual puzzle pieces to their original positions.
 
-Fix Details
-Adjustments were made to the positioning and rendering of puzzle pieces to prevent them from stacking. This improves the user experience by allowing smoother interaction with individual pieces.
-
-How to Test
+How to Test Puzzle stacking:
 Open the puzzle application.
 Move and arrange puzzle pieces.
-Verify that no pieces overlap or stack.
-Confirm that user interactions work as expected.
+Verify no overlapping or stacking occurs.
+Confirm smooth user interactions.
+
+
+How to Test Reset functionality:
+Open the puzzle application.
+Move puzzle pieces.
+Use the reset button to restore individual pieces.
+Confirm reset functionality is working accurately.
+
+
+

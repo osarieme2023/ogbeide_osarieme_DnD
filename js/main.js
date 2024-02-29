@@ -13,8 +13,9 @@ let theButtons = document.querySelectorAll("#buttonHolder img"),
 	dropZones = document.querySelectorAll('.drop-zone'),
 	// store the dragged piece in a global variable
 	// because we need it in the handleDrop function
-	draggedPiece;
-
+	draggedPiece,
+	imgcount = 0;
+let reset = document.querySelector("#resetBut");
 // step 3
 // functionality always goes in the middle -> how do we want
 // the app to behave?
@@ -26,10 +27,17 @@ function changeBGImage() {
 
 	// bug fix #2 should go here. it's at most 3 lines of JS code.
 	puzzleBoard.style.backgroundImage = `url(images/backGround${this.id}.jpg)`;
+
+	let currentid = this.id;
+
+
+
+
+	resetPuzzle();
 }
 
 function handleStartDrag() { 
-	console.log('started dragging this piece:', this);
+	console.log();
 	// store a reference to the puzzle piece image that we're dragging
 	// so we can use it later and move it to a drop zone
 	draggedPiece = this;
@@ -38,26 +46,35 @@ function handleStartDrag() {
 function handleDragOver(e) { 
 	e.preventDefault(); // e is shorthand for event
 	// this overrides the default dragover behaviour
-	console.log('dragged over me'); 
+	console.log(); 
 }
 
-function handleDrop(e) { 
-	    // Prevent the default behavior of the drop event
-		e.preventDefault();
-    
-		// Log a message to indicate that something has been dropped
-		console.log('dropped something on me');
-	
-		// Check if the drop zone is empty
-		if (this.children.length === 0) {
-			// If the drop zone is empty, append the dragged piece to it
-			this.appendChild(draggedPiece);
-		} else {
-			// If the drop zone is occupied, log a message
-			console.log('Oops! The drop zone is occupied!');
-		}
-	
+function handleDrop(e) {
+    e.preventDefault();
+    console.log();
 
+    if (this.children.length === 0) {
+        this.appendChild(draggedPiece);
+    } else {
+        console.log();
+    }
+}
+
+// Define the resetPuzzle function
+function resetPuzzle() {
+    puzzlePieces.forEach(function(piece) {
+        if (piece.parentElement.classList.contains('drop-zone')) {
+            puzzleBoard.appendChild(piece);
+        }
+    });
+
+    puzzlePieces.forEach(function(piece) {
+        document.querySelector(".puzzle-pieces").appendChild(piece);
+    });
+
+    dropZones.forEach(function(zone) {
+        zone.style.backgroundImage = '';
+    });
 }
 // step 2
 // event handling always goes at the bottom => 
@@ -78,3 +95,5 @@ dropZones.forEach(zone => zone.addEventListener("dragover", handleDragOver));
 
 // add the drop event handling
 dropZones.forEach(zone => zone.addEventListener("drop", handleDrop));
+
+reset.addEventListener("click", resetPuzzle);
